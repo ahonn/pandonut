@@ -1,7 +1,21 @@
 import type { NextPage } from 'next';
-import { useMemo } from 'react';
-import { Map, Markers } from 'react-amap';
-import { IFrisbeeClubRecord, VikaFrisbeeDatabse } from '../src/database/vika';
+import { useMemo, useState } from 'react';
+import { IFrisbeeClubRecord, VikaFrisbeeDatabse } from '../database/vika';
+import {
+  AppShell,
+  Card,
+  Container,
+  Header,
+  Select,
+  SimpleGrid,
+} from '@mantine/core';
+import Image from 'next/image';
+import dynamic from 'next/dynamic'
+
+const FrisbeeMap = dynamic(
+  () => import('../components/FrisbeeMap'),
+  { ssr: false }
+)
 
 export async function getStaticProps() {
   const database = VikaFrisbeeDatabse.getInstance();
@@ -20,27 +34,62 @@ export interface IHomeProps {
 
 const Home: NextPage<IHomeProps> = (props) => {
   const { records } = props;
-  console.log(props);
+  const [selectedProvince, setSelectedProvince] = useState<string | null>('');
 
-  const markers = useMemo(() => {
-    return records.map((record) => {
-      return {
-        position: {
-          longitude: record.lon,
-          latitude: record.lat,
-        },
-      };
-    });
-  }, [records]);
+  const provinces = useMemo(
+    () => Array.from(new Set(records.map((record) => record.province))),
+    [records],
+  );
+
+  const citys = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          records
+            .filter((record) => record.province === selectedProvince)
+            .map((record) => record.city),
+        ),
+      ),
+    [records, selectedProvince],
+  );
 
   return (
-    <div>
-      <div style={{ width: '100%', height: '400px' }}>
-        <Map amapkey={'788e08def03f95c670944fe2c78fa76f'} mapStyle="blue_night">
-          <Markers markers={markers} useCluster />
-        </Map>
-      </div>
-    </div>
+    <AppShell
+      header={
+        <Header height={60}>
+          <Container py={5}>
+            <Image src="/logo.png" alt="logo" width={140} height={50} />
+          </Container>
+        </Header>
+      }
+    >
+      <Container>
+        <Card shadow="md" withBorder>
+          <SimpleGrid cols={3}>
+            <Select
+              placeholder="Province"
+              value={selectedProvince}
+              onChange={setSelectedProvince}
+              data={provinces.map((province) => ({
+                label: province,
+                value: province,
+              }))}
+            />
+            <Select
+              placeholder="City"
+              data={citys.map((city) => ({
+                label: city,
+                value: city,
+              }))}
+            />
+          </SimpleGrid>
+
+          <div className="pt-4">
+            <FrisbeeMap data={records} province={selectedProvince} />
+          </div>
+        </Card>
+      </Container>
+    </AppShell>
   );
 };
 

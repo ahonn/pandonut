@@ -25,7 +25,6 @@ export class VikaFrisbeeDatabse extends BaseFrisbeeDatabase<IFrisbeeClubRecord> 
 
   constructor() {
     super();
-    console.log(process.env.VIKA_MAIN_DATASHEET, process.env.VIKA_API_TOKEN)
     this.vika = new Vika({ token: process.env.VIKA_API_TOKEN! });
     this.datasheet = this.vika.datasheet(process.env.VIKA_DATASHEET!)
   }
@@ -42,8 +41,9 @@ export class VikaFrisbeeDatabse extends BaseFrisbeeDatabase<IFrisbeeClubRecord> 
     const recordsIter = this.datasheet.records.queryAll({ viewId: process.env.VIKA_MAIN_VIEW_ID! });
     const records = [];
     for await (const eachPageRecords of recordsIter){
-      records.push(...eachPageRecords);
+      const items = eachPageRecords.map(({ fields }) => fields);
+      records.push(...items);
     }
-    return records.map(({ fields }) => fields) as unknown as IFrisbeeClubRecord[];
+    return records as unknown as IFrisbeeClubRecord[];
   }
 }
