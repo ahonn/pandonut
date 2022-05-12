@@ -1,6 +1,6 @@
 import {
   MarkerClusterGroupOptions,
-  markerClusterGroup as LeafletMarkerClusterGroup,
+  MarkerClusterGroup as LeafletMarkerClusterGroup,
 } from 'leaflet';
 import {
   createPathComponent,
@@ -46,7 +46,7 @@ function createClusterMarker(
 }
 
 const MarkerClusterGroup = createPathComponent<
-  LeafletMarkClusterGroup,
+  LeafletMarkerClusterGroup,
   IMarkerClusterGroupProps
 >(createClusterMarker);
 
