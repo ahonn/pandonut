@@ -5,51 +5,47 @@ import MarkerClusterGroup from './leaflet/MarkerClusterGroup';
 import 'leaflet/dist/leaflet.css';
 import RegionSelect from './RegionSelect';
 import { useRecoilValue } from 'recoil';
-import { ClubType, frisbeeClubsState } from '../store/state';
+import { frisbeeClubsState } from '../store/state';
 import TypeSwitch from './TypeSwitch';
+import { ClubType } from './common/club-type';
 
 const TITLE_LAYER_URL =
   'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}';
-export const DEFAULT_MAP_CENTER: [number, number] = [39.90960456049752, 116.3972282409668];
+export const DEFAULT_MAP_CENTER: [number, number] = [
+  39.90960456049752, 116.3972282409668,
+];
 
-const schoolIcon = Leaflet.divIcon({
-  className: 'border-none',
-  iconAnchor: [18, 36],
-  popupAnchor: [0, -34],
-  html: `<img class="h-9" src="/assets/school-marker.svg" />`
-});
+function getClubTypeIcon(type: ClubType) {
+  function createLeafletIcon(src: string) {
+    return Leaflet.divIcon({
+      className: 'border-none',
+      iconAnchor: [18, 36],
+      popupAnchor: [0, -34],
+      html: `<img class="h-9" src="${src}" />`,
+    });
+  }
 
-const womenIcon = Leaflet.divIcon({
-  className: 'border-none',
-  iconAnchor: [18, 36],
-  popupAnchor: [0, -34],
-  html: `<img class="h-9" src="/assets/woman-marker.svg" />`
-});
+  const schoolIcon = createLeafletIcon('/assets/school-marker.svg');
+  const womenIcon = createLeafletIcon('/assets/woman-marker.svg');
+  const publicIcon = createLeafletIcon('/assets/public-marker.svg');
+  const teenIcon = createLeafletIcon('/assets/teen-marker.svg');
 
-const publicIcon = Leaflet.divIcon({
-  className: 'border-none',
-  iconAnchor: [18, 36],
-  popupAnchor: [0, -34],
-  html: `<img class="h-9" src="/assets/public-marker.svg" />`
-});
+  const CLUB_TYPE_ICON_MAP = {
+    [ClubType.Public]: publicIcon,
+    [ClubType.School]: schoolIcon,
+    [ClubType.Women]: womenIcon,
+    [ClubType.Teen]: teenIcon,
+  };
+  return CLUB_TYPE_ICON_MAP[type];
+}
 
 export interface IFrisbeeMapProps {
   className?: string;
 }
 
-function getMarkerIcon(type: string) {
-  if (type === ClubType.School) {
-    return schoolIcon;
-  }
-  if (type === ClubType.Women) {
-    return womenIcon;
-  }
-  return publicIcon;
-}
-
 const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
   const { className } = props;
-  const clubs = useRecoilValue(frisbeeClubsState)
+  const clubs = useRecoilValue(frisbeeClubsState);
 
   return (
     <MapContainer
@@ -68,7 +64,7 @@ const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
             <Marker
               key={club.name + index}
               position={[+club.lat, +club.lon]}
-              icon={getMarkerIcon(club.type)}
+              icon={getClubTypeIcon(club.type as ClubType)}
             >
               <Popup>{club.name}</Popup>
             </Marker>

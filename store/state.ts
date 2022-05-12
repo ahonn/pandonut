@@ -1,11 +1,6 @@
 import { atom, selector } from 'recoil';
+import { ClubType } from '../components/common/club-type';
 import { IFrisbeeClubRecord } from '../database/vika';
-
-export enum ClubType {
-  Public = '混合/公开',
-  School = '学校队伍',
-  Women = '女子队伍',
-};
 
 export const frisbeeClubsState = atom<IFrisbeeClubRecord[]>({
   key: 'frisbeeClubsState',
@@ -14,7 +9,7 @@ export const frisbeeClubsState = atom<IFrisbeeClubRecord[]>({
 
 export const clubTypesState = atom<ClubType[]>({
   key: 'clubTypeState',
-  default: [ClubType.Public, ClubType.School, ClubType.Women],
+  default: [ClubType.Public, ClubType.School, ClubType.Women, ClubType.Teen],
 });
 
 export const provinceState = atom<string>({

@@ -4,8 +4,9 @@ import { AppShell, Container, Header } from '@mantine/core';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ClubType, clubTypesState, frisbeeClubsState } from '../store/state';
+import { clubTypesState, frisbeeClubsState } from '../store/state';
 import { useEffect } from 'react';
+import { ClubType } from '../components/common/club-type';
 
 const FrisbeeMap = dynamic(() => import('../components/FrisbeeMap'), {
   ssr: false,
