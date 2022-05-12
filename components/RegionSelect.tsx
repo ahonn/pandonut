@@ -1,25 +1,23 @@
+import React from 'react';
 import { Select } from '@mantine/core';
 import * as turf from '@turf/turf';
 import { useLeafletContext } from '@react-leaflet/core';
-import React, { useMemo, useState } from 'react';
-import useFrisbeeClubContext from '../hooks/useFrisbeeClubContext';
 import { DEFAULT_MAP_CENTER } from './FrisbeeMap';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { cityListState, cityState, frisbeeClubsState, provinceListState, provinceState } from '../store/state';
 
-const RegionSelect: React.FC = () => {
-  const [province, setProvince] = useState<string | null>('');
-  const [city, setCity] = useState<string | null>('');
+export interface IRegionSelectProps {
+  className?: string;
+}
+
+const RegionSelect: React.FC<IRegionSelectProps> = (props) => {
+  const { className } = props;
+  const [province, setProvince] = useRecoilState(provinceState);
+  const [city, setCity] = useRecoilState(cityState);
+  const clubs = useRecoilValue(frisbeeClubsState)
+  const provinceList = useRecoilValue(provinceListState);
+  const cityList = useRecoilValue(cityListState);
   const leafletContext = useLeafletContext();
-  const clubs = useFrisbeeClubContext();
-
-  const provinces = useMemo(
-    () => Array.from(new Set(clubs.map((c) => c.province))),
-    [clubs],
-  );
-
-  const citys = useMemo(
-    () => Array.from(new Set(clubs.filter((c) => !province || c.province === province).map((c) => c.city))),
-    [clubs, province],
-  );
 
   const setMapViewCenter = (points: [number, number][], zoom = 8) => {
     if (points.length >= 4) {
@@ -69,19 +67,19 @@ const RegionSelect: React.FC = () => {
   };
 
   return (
-    <div className="absolute bottom-2 left-2 flex flex-row">
+    <div className={`flex flex-row ${className}`}>
       <Select
-        className="w-40 mr-2"
+        className="w-32 mr-2"
         value={province}
         onChange={handleProvinceChange}
-        data={[{ label: '全部省份', value: '' }, ...provinces]}
+        data={[{ label: '全部省份', value: '' }, ...provinceList]}
       />
 
       <Select
-        className="w-40"
+        className="w-32"
         value={city}
         onChange={handleCityChange}
-        data={[{ label: '全部地区', value: '' }, ...citys]}
+        data={[{ label: '全部地区', value: '' }, ...cityList]}
       />
     </div>
   );
