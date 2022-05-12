@@ -1,34 +1,102 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 盘盘圈 —— 飞盘地图
 
-## Getting Started
+> 本仓库为飞盘地图 V3 版本，正在开发中
 
-First, run the development server:
+## 更新记录
+- 2021.08.03 [盘盘圈全国飞盘地图 v1.0 发布](https://mp.weixin.qq.com/s/dP6URIQTDC2E52wZj9CsAw)
+- 2022.05.09 [盘盘圈全国飞盘地图 v2.0 发布](http://www.pandonut.com/map)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+更加详细的数据更新记录请前往[UPDATE.md](UPDATE.md)
+## 盘盘圈
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Hey～你好！“盘盘圈”（Pandonut）是由来自，来自同济 TJUF 极限飞盘队的```经林```、```美惠```、```juju```、```黑黑```，来自华南理工大学的```桂宇```和来自宁波 UFO 的 ```miao2```共同运营的独立极限飞盘内容平台。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<div align=center>
+    <img src="./assets/img/frisbee_logo.svg" width="200"/>
+</div>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+—— 我们经常会被问到 “*你们是什么机构？*”
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+—— **没有机构，我们只是我们。** 我们热爱极限飞盘这项运动，希望为国内极限飞盘的推广和发展做些微小贡献。
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 飞盘地图
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+这里是我们的网站：“盘盘圈——飞盘地图”
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+我们希望 ta 能帮助所有对飞盘感兴趣的人用最低的信息成本参与到飞盘运动中来，也希望居住地发生变化的盘友，能快速找到本地组织，重建生活的秩序。
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<div align=center>
+    <img src="./assets/img/frisbee_logo_head.png" width="200"/>
+</div>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+我们目前收集了```359```（持续更新中...）个由中国飞盘爱好者组成的海内外飞盘组织，包括```学校队伍```、```混合/公开队伍```、```女子队伍```、```青训队伍```。
+
+如果您发现您的队伍或俱乐部没有出现在这个地图上，或者信息出现错误，抱歉是我们的疏忽，请前往[飞盘地图网站](http://www.pandonut.com/map)添加您的信息，或通过盘盘圈公众号联系我们。
+
+
+这里有一些需要说明的事：
+
+- 不是所有填写信息的飞盘组织都会出现在地图上
+
+    我们进行一些初步筛选，信息不全的组织和一些以健康快乐为旗号什么都做的运动社群没有出现在地图上，这当然不是您的问题，只是我们提供的服务和您的业务属性不匹配。当然如果在我们整理过程中出现了对飞盘队的遗漏，说声抱歉，您可以通过上面的方式联系我们添加信息。
+
+- 感谢各位负责人和队长
+
+    感谢所有填表的飞盘俱乐部负责人和队伍队长，非常感谢你们付出的时间组织飞盘活动，没有你们的帮助我们无法完成这个地图。
+
+- 我们不是营销号，也不为盈利而生
+
+    我们真真切切热爱飞盘，也希望中国飞盘可以越来越好，我们目的也很单纯，国内需要一份飞盘地图，那就可以由我们来做。所以，如果您发现这个地图上没有出现您所在的俱乐部或者社群，请麻烦进入[网站](http://www.pandonut.com/map)点击右上侧的信息添加填写信息，我们将以最快的速度将其体现到地图上。
+
+- 我觉得这块不合理！
+    
+    我们接受任何意见，如果您有任何修改意见或者任何想法，欢迎给“盘盘圈”公众号后台留言或者微信添加 miao_42 反馈。我们希望听到各种声音。
+
+
+## 支持我们
+
+如果你喜欢我们的项目请捐赠支持我们，或者帮我们点一个小小的 Star 🌟
+
+这些捐赠不会流入我们的口袋，我们会把 ta 们存入创作基金，用来支付网站、服务器、推广等所产生的成本，你也可以在公众号“盘盘圈”的标签栏点击 #财务公示 随时督查。
+
+你的捐赠可以让我们更健康地生产内容和维护项目，非常感谢。
+
+
+<div align=center>
+    <img src="./assets/img/支付宝二维码.jpeg" width="150"/><img src="./assets/img/微信二维码.jpeg" width="166"/>
+</div>
+
+## 关于我们
+
+欢迎前往微信搜索关注公众号 “盘盘圈”，我们会持续更新优质的飞盘内容。
+
+<div align=center>
+    <img src="./assets/img/盘盘圈.jpg" width="120"/><img src="./assets/img/盘圈小电小助手.jpg" width="200"/>
+</div>
+
+
+“盘盘圈” 有三个正在进行的中等项目和几个正在进行的小项目：
+
+两个中等项目：
+- 更加关注 SOTG（Spirit of the Game） 的 —— “盘盘圈”小程序
+- 更加注重赛场外飞盘故事的播客 ——《盘圈小电》
+- 更加关心参与飞盘运动信息成本的 ——《飞盘地图》
+
+几个小项目 ：
+
+- 国内飞盘比赛分布图（下一步要做的事）
+- 国际飞盘比赛复盘视频（已死亡等待复活）
+- 盘圈通讯 Newsletter 计划（已失败，没人买，正在转型）
+
+**“盘盘圈”小程序** 主要以线上极限飞盘精神评分表为主体，涵盖飞盘规则、飞盘活动、《盘圈小电》等功能。我们希望通过小程序实现极限飞盘精神评分无纸化，同时借助小程序的便捷高效更好地促进极限飞盘运动发展。
+
+
+**《盘圈小电》** 是一档主要面对极限飞盘玩家和对极限飞盘运动感兴趣群体的播客节目。我们热爱这项运动，也深知 ta 在国内还很小众。为了增加些许趣味性让更多人知晓或继续热爱这项运动，也为了丰富中文飞盘领域的内容，我们策划了这个不成熟的播客节目，目前已经完成了第一季的筹划。欢迎各位盘友对节目相关内容的批评指正。
+
+如果你觉得我们的内容做得不错，欢迎在公众号上点赞、在看或转发支持我们，也欢迎各位给予我们资金上的支持，请在[```“爱发电”```](https://afdian.net/@pan-donut)上支持我们，具体的资助信息和规则请点击[《盘圈小电》第一届股东大会](https://mp.weixin.qq.com/s/VmH1Otl4a3bkeq1qX5FV1w)。
+
+正如公众号的名字“盘盘圈”想要表达的，我们希望所有热爱极限飞盘的玩家，所有参与或将要参与到极限飞盘运动中的朋友都能拥有一个属于极限飞盘的第三方内容平台。
+
+我们始终相信飞盘是以人为枢纽的运动，希望我们的这个小项目能给各位带来一些飞盘认同感！也希望这个项目能延长你对飞盘的热爱！有机会我们场上见！
