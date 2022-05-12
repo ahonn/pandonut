@@ -21,10 +21,11 @@ Leaflet.Icon.Default.mergeOptions({
 export interface IFrisbeeMapProps {
   data: IFrisbeeClubRecord[];
   province: string | null;
+  className?: string;
 }
 
 const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
-  const { data, province } = props;
+  const { data, province, className } = props;
 
   const center = useMemo(() => {
     const points = data
@@ -36,7 +37,7 @@ const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
 
   return (
     <MapContainer
-      className="w-full h-96"
+      className={className}
       center={center}
       zoom={4}
       scrollWheelZoom={false}

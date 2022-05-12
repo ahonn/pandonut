@@ -34,24 +34,6 @@ export interface IHomeProps {
 
 const Home: NextPage<IHomeProps> = (props) => {
   const { records } = props;
-  const [selectedProvince, setSelectedProvince] = useState<string | null>('');
-
-  const provinces = useMemo(
-    () => Array.from(new Set(records.map((record) => record.province))),
-    [records],
-  );
-
-  const citys = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          records
-            .filter((record) => record.province === selectedProvince)
-            .map((record) => record.city),
-        ),
-      ),
-    [records, selectedProvince],
-  );
 
   return (
     <AppShell
@@ -63,32 +45,9 @@ const Home: NextPage<IHomeProps> = (props) => {
         </Header>
       }
     >
-      <Container>
-        <Card shadow="md" withBorder>
-          <SimpleGrid cols={3}>
-            <Select
-              placeholder="Province"
-              value={selectedProvince}
-              onChange={setSelectedProvince}
-              data={provinces.map((province) => ({
-                label: province,
-                value: province,
-              }))}
-            />
-            <Select
-              placeholder="City"
-              data={citys.map((city) => ({
-                label: city,
-                value: city,
-              }))}
-            />
-          </SimpleGrid>
-
-          <div className="pt-4">
-            <FrisbeeMap data={records} province={selectedProvince} />
-          </div>
-        </Card>
-      </Container>
+      <div className="-m-4">
+        <FrisbeeMap className="w-screen h-1/3screen min-h-96" data={records} province={null} />
+      </div>
     </AppShell>
   );
 };
