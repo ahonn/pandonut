@@ -1,4 +1,4 @@
-import { Card } from '@mantine/core';
+import { Card, Skeleton } from '@mantine/core';
 import React, { useMemo } from 'react';
 import {
   CartesianGrid,
