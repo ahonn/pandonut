@@ -44,4 +44,3 @@ export const cityListState = selector<string[]>({
     );
   },
 });
-

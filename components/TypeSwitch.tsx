@@ -40,6 +40,7 @@ const TypeSwitch: React.FC<ITypeSwitchProps> = (props) => {
           size="xs"
           label={type}
           checked={clubTypes.includes(type)}
+          disabled={clubTypes.includes(type) && clubTypes.length === 1}
           onChange={(e) => handleSwitchChange(e, type)}
           sx={() => ({
             '.mantine-Switch-input:checked': {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Leaflet from 'leaflet';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import MarkerClusterGroup from './leaflet/MarkerClusterGroup';
+import MarkerClusterGroup from './MarkerClusterGroup';
 import 'leaflet/dist/leaflet.css';
 import RegionSelect from './RegionSelect';
 import { useRecoilValue } from 'recoil';

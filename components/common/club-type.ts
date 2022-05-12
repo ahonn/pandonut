@@ -12,3 +12,5 @@ export const CLUB_TYPE_COLOR_MAP = {
   [ClubType.Women]: '#F272A1',
   [ClubType.Teen]: '#37C1D4',
 };
+
+export const CLUB_TYPE_LIST = [ClubType.Public, ClubType.School, ClubType.Women, ClubType.Teen];
