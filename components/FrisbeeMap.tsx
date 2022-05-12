@@ -1,17 +1,16 @@
-import React, { useMemo } from 'react';
-// @ts-ignore
-import { Series } from 'pandas-js';
+import React from 'react';
 import Leaflet from 'leaflet';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import { IFrisbeeClubRecord } from '../database/vika';
 import MarkerClusterGroup from './leaflet/MarkerClusterGroup';
 import 'leaflet/dist/leaflet.css';
+import RegionSelect from './RegionSelect';
+import useFrisbeeClubContext from '../hooks/useFrisbeeClubContext';
 
 const TITLE_LAYER_URL =
   'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}';
-const DEFAULT_MAP_CENTER = [39.90960456049752, 116.3972282409668];
+export const DEFAULT_MAP_CENTER: [number, number] = [39.90960456049752, 116.3972282409668];
 
 Leaflet.Icon.Default.mergeOptions({
   iconUrl: markerIcon.src,
@@ -20,36 +19,23 @@ Leaflet.Icon.Default.mergeOptions({
 });
 
 export interface IFrisbeeMapProps {
-  data: IFrisbeeClubRecord[];
-  province: string | null;
   className?: string;
 }
 
 const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
-  const { data, province, className } = props;
-
-  const center = useMemo(() => {
-    if (province) {
-      const points = data
-        .filter((item) => item.province === province)
-        .map(({ lat, lon }) => [+lat, +lon]);
-      const series = new Series(points);
-      return series.median();
-    }
-    return DEFAULT_MAP_CENTER;
-  }, [data, province]);
+  const { className } = props;
+  const clubs = useFrisbeeClubContext();
 
   return (
     <MapContainer
       className={className}
-      center={center}
+      center={DEFAULT_MAP_CENTER}
       zoom={4}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
     >
       <TileLayer url={TITLE_LAYER_URL} />
-      {/* @ts-ignore */}
       <MarkerClusterGroup>
-        {data.map((club, index) => {
+        {clubs.map((club, index) => {
           return (
             <Marker position={[+club.lat, +club.lon]} key={club.name + index}>
               <Popup>{club.name}</Popup>
@@ -57,6 +43,7 @@ const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
           );
         })}
       </MarkerClusterGroup>
+      <RegionSelect />
     </MapContainer>
   );
 };

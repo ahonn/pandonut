@@ -1,4 +1,7 @@
-import { MarkerClusterGroupOptions, MarkerClusterGroup } from 'leaflet';
+import {
+  MarkerClusterGroupOptions,
+  markerClusterGroup as LeafletMarkerClusterGroup,
+} from 'leaflet';
 import {
   createPathComponent,
   LeafletContextInterface,
@@ -25,7 +28,7 @@ function createClusterMarker(
       options[propName as keyof MarkerClusterGroupOptions] = propVal;
     }
   });
-  const instance = new MarkerClusterGroup(options);
+  const instance = new LeafletMarkerClusterGroup(options);
 
   // Initializing event listeners
   Object.entries(events).forEach(([eventAsProp, callback]) => {
@@ -42,6 +45,9 @@ function createClusterMarker(
   };
 }
 
-const ClusterMarker = createPathComponent(createClusterMarker);
+const MarkerClusterGroup = createPathComponent<
+  LeafletMarkClusterGroup,
+  IMarkerClusterGroupProps
+>(createClusterMarker);
 
-export default ClusterMarker;
+export default MarkerClusterGroup;

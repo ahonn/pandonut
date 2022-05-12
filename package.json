@@ -13,6 +13,7 @@
     "@mantine/hooks": "^4.2.4",
     "@mantine/next": "^4.2.4",
     "@react-leaflet/core": "^2.0.0",
+    "@turf/turf": "^6.5.0",
     "@types/react-leaflet-markercluster": "^3.0.0",
     "@vikadata/vika": "^1.0.7",
     "autoprefixer": "^10.4.7",
