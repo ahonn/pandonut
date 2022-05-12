@@ -1,13 +1,9 @@
 import type { NextPage } from 'next';
-import { useMemo, useState } from 'react';
 import { IFrisbeeClubRecord, VikaFrisbeeDatabse } from '../database/vika';
 import {
   AppShell,
-  Card,
   Container,
   Header,
-  Select,
-  SimpleGrid,
 } from '@mantine/core';
 import Image from 'next/image';
 import dynamic from 'next/dynamic'
@@ -39,15 +35,15 @@ const Home: NextPage<IHomeProps> = (props) => {
     <AppShell
       header={
         <Header height={60}>
-          <Container py={5}>
-            <Image src="/logo.png" alt="logo" width={140} height={50} />
+          <Container size="xl" py={5}>
+            <Image src="/assets/logo.png" alt="logo" width={140} height={50} />
           </Container>
         </Header>
       }
     >
-      <div className="-m-4">
-        <FrisbeeMap className="w-screen h-1/3screen min-h-96" data={records} province={null} />
-      </div>
+      <Container size="xl" px={0}>
+        <FrisbeeMap className="w-full h-1/2screen min-h-96 z-0 shadow" data={records} province={null} />
+      </Container>
     </AppShell>
   );
 };
