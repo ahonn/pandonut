@@ -55,7 +55,7 @@ const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
           const { latitude, longitude } = position.coords;
           console.log(latitude, longitude);
           if (mapRef.current) {
-            mapRef.current.setView([latitude, longitude], 9);
+            mapRef.current.setView([latitude, longitude], 10);
           }
         });
       }
