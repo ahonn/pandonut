@@ -5,6 +5,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
+    cityState,
   clubTypesState,
   frisbeeClubsState,
   provinceState,
@@ -16,18 +17,15 @@ const FrisbeeMap = dynamic(() => import('../components/FrisbeeMap'), {
   ssr: false,
   loading: () => <Skeleton className="w-full h-1/2screen min-h-96 shadow" />,
 });
-const ProvinceBarChart = dynamic(
-  () => import('../components/ProvinceBarChart'),
-  {
-    loading: () => <Skeleton className="my-4 w-full h-96 shadow" />,
-  },
-);
-const EstablishmentLineChart = dynamic(
-  () => import('../components/EstablishmentLineChart'),
-  {
-    loading: () => <Skeleton className="my-4 w-full h-96 shadow" />,
-  },
-);
+const ProvinceBarChart = dynamic(() => import('../components/ProvinceBarChart'), {
+  loading: () => <Skeleton className="my-4 w-full h-96 shadow" />,
+});
+const CityBarChart = dynamic(() => import('../components/CityBarChart'), {
+  loading: () => <Skeleton className="my-4 w-full h-96 shadow" />,
+});
+const EstablishmentLineChart = dynamic(() => import('../components/EstablishmentLineChart'), {
+  loading: () => <Skeleton className="my-4 w-full h-96 shadow" />,
+});
 
 export async function getStaticProps() {
   const database = VikaFrisbeeDatabse.getInstance();
@@ -72,10 +70,14 @@ const Home: NextPage<IHomeProps> = (props) => {
         <h2 className="text-4xl mt-8 font-serif">
           飞盘地图数据统计{province ? `(${province})` : ''}
         </h2>
-        {province === '' && (
+        {province === '' ? (
           <>
             <ProvinceBarChart />
             <EstablishmentLineChart />
+          </>
+        ) : (
+          <>
+            <CityBarChart province={province} />
           </>
         )}
       </Container>

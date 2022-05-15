@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Leaflet from 'leaflet';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from './MarkerClusterGroup';
@@ -46,9 +46,25 @@ export interface IFrisbeeMapProps {
 const FrisbeeMap: React.FC<IFrisbeeMapProps> = (props) => {
   const { className } = props;
   const clubs = useRecoilValue(frisbeeClubsState);
+  const mapRef = useRef<Leaflet.Map>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const { latitude, longitude } = position.coords;
+          console.log(latitude, longitude);
+          if (mapRef.current) {
+            mapRef.current.setView([latitude, longitude], 9);
+          }
+        });
+      }
+    }, 0);
+  }, []);
 
   return (
     <MapContainer
+      ref={mapRef}
       className={className}
       center={DEFAULT_MAP_CENTER}
       zoom={4}
